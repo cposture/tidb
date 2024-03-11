@@ -21,7 +21,6 @@ import (
 	"sync/atomic"
 
 	"github.com/pingcap/tidb/pkg/disttask/framework/proto"
-	"github.com/pingcap/tidb/pkg/util/cpu"
 	"github.com/pingcap/tidb/pkg/util/logutil"
 	"go.uber.org/zap"
 )
@@ -84,7 +83,7 @@ func newSlotManager() *SlotManager {
 	// this node might not be the managed node of the framework, but we initialize
 	// capacity with the cpu count of this node, it will be updated when node
 	// manager starts.
-	s.updateCapacity(cpu.GetCPUCount())
+	s.updateCapacity(0)
 	return s
 }
 
